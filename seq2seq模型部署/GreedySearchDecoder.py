@@ -33,5 +33,5 @@ class GreedySearchDecoder(torch.jit.ScriptModule):
             all_tokens = torch.cat((all_tokens,decoder_input),dim=0)
             all_scores = torch.cat((all_scores,decoder_scores),dim=0)#准备当前令牌作为下一个解码器输入
             decoder_input = torch.unsqueeze(decoder_input,0)#   返回词令牌和分数的集合
-            return all_tokens,all_scores
+        return all_tokens,all_scores
 
