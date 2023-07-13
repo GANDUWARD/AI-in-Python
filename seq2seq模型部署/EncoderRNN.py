@@ -16,7 +16,7 @@ class EncoderRNN(nn.Module):
         # 将单词索引转换为向量
         embedded = self.embedding(input_seq)
         # 为RNN模块填充批次序列
-        packed = nn.utils.rnn.pad_packed_sequence(embedded, input_lengths)
+        packed = nn.utils.rnn.pack_padded_sequence(embedded, input_lengths)
         # 正向通过GRU
         outputs, hidden = self.gru(packed, hidden)
         # 打开填充
