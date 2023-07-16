@@ -20,7 +20,7 @@ import LuoAttnDecoderRNN as L
 PAD_token = 0  # Used for padding short sentences
 SOS_token = 1  # Start-of-sentence token
 EOS_token = 2  # End-of-sentence token
-device = torch.device("cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 MAX_LENGTH = 10  # Maximum sentence length
 
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     loadFilename = 'data/4000_checkpoint.tar'
     # 加载模型
     # 强制CPU设备选项
-    checkpoint = torch.load(loadFilename, map_location=torch.device('cpu'))
+    checkpoint = torch.load(loadFilename, map_location=device)
     encoder_sd = checkpoint['en']
     decoder_sd = checkpoint['de']
     encoder_optimizer_sd = checkpoint['en_opt']
